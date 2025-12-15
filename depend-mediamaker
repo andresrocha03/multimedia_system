@@ -1,0 +1,2 @@
+Media.o: Media.cpp Media.h
+main.o: main.cpp Media.h

@@ -1,0 +1,11 @@
+How de we call a method that is not implemented
+in the base class, but only in the subclasses?
+
+Answer: 
+The method is a pure virtual function and the class
+is called abstract class.
+
+It is not possible anymore de instanciate base class
+objects. Why is that ?
+Answer:
+Because base class is an abstract class.
