@@ -9,3 +9,20 @@ It is not possible anymore de instanciate base class
 objects. Why is that ?
 Answer:
 Because base class is an abstract class.
+
+What is the characteristic property of POO that allows to create a vector 
+with photos and videos and treat everyone of them in the same way ?
+Answer:
+Polymorfism. This allows us to manipulate objects through the base
+class interface, but the correct method implementation is called at runtime 
+depending on the real object type.
+
+What is needed specifically in C++?
+Answer:
+In cpp we explictly need to change objects to virtual, in Java is virtual by default.
+
+What are the type of elements in the vector? Compare to Java.
+Answer:
+It must be pointers because there would be object slicing and polymorphis mwould be lost.
+In java, objects are always manipulated throufh references and methods
+are virtual by default.

@@ -15,15 +15,15 @@ class Video : public Media {
 
         Video();
 
-        ~Video() override;
+        virtual ~Video() override;
 
         double getDuration() const;
 
         void setDuration(double duration);
 
-        void show(std::ostream & s) const override;
+        virtual void show(std::ostream & s) const override;
 
-        void play(std::string path) const override;
+        virtual void play(std::string path) const override;
     };
 
 #endif // VIDEO_H
