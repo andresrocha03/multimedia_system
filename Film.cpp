@@ -1,8 +1,9 @@
 #include "Film.h"
 
-Film::Film(const std::string title, const std::string filepath, const int chapters_count, const int* chapters_durations)
-    : Video(title, filepath, 0.0), chapters_count(chapters_count){
-    this->chapters_durations = new int[chapters_count];
+Film::Film(const std::string& title, const std::string& filepath, const double duration, const int chapters_count, const int* chapters_durations)
+    : Video(title, filepath, duration), chapters_count(chapters_count)
+
+{
     copyChapters(chapters_durations, chapters_count);
 }
 
@@ -15,6 +16,7 @@ Film::~Film() {
 }
 
 void Film::copyChapters(const int * chapters_durations, int count) {
+    this->chapters_durations = new int[count];
     this->chapters_count = count;
     for (int i=0; i<count; i++){
         this->chapters_durations[i] = chapters_durations[i];
@@ -29,14 +31,17 @@ void Film::clearChapters() {
     this->chapters_count = 0;
 }
 
-void Film::show() {
-    Video::show();
-    std::cout << "Chapters count: " << this->chapters_count << std::endl;
-    std::cout << "Chapters durations: ";
+void Film::show(std::ostream & s) const {
+    Video::show(s);
+    s << "Chapters Count: " << this->chapters_count << std::endl;
+    s << "Chapters Durations: ";
     for (int i = 0; i < this->chapters_count; i++) {
-        std::cout << this->chapters_durations[i] << " ";
+        s << this->chapters_durations[i];
+        if (i < this->chapters_count - 1) {
+            s << ", ";
+        }
     }
-    std::cout << std::endl;
+    s << std::endl;
 }
 
 int Film::getChaptersCount() const {
@@ -55,8 +60,19 @@ int Film::getChapterDuration(int chapter_index) const {
 }
 
 void Film::setChaptersDuration(const int * chapters_durations, int count) {
+    //first, clear existing chapters
     clearChapters();
+
+    // in case the input is null or count is non-positive
+    if (chapters_durations == nullptr || count <= 0) {
+        this->chapters_durations = nullptr;
+        this->chapters_count = 0;
+        return;
+    }
+
+    // else, copy the new chapters durations
     this->chapters_durations = new int[count];
+    this->chapters_count = count;
     copyChapters(chapters_durations, count);
 }
 

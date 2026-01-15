@@ -15,7 +15,7 @@ class Film : public Video {
     public:
         Film(); 
     
-        Film(const std::string title, const std::string filepath, const int chapters_count, const int* chapters_durations);
+        Film(const std::string& title, const std::string& filepath, const double duration, const int chapters_count, const int* chapters_durations);
 
         ~Film() override;
 
