@@ -9,16 +9,26 @@ class Film : public Video {
         int chapters_count {};
         int* chapters_durations {};
 
-    public:
-        Film(const std::string title, const std::string filepath, const int chapters_count, const int* chapters_durations);
+        void clearChapters();
+        void copyChapters(const int* chapters_durations, int count);
 
-        Film();
+    public:
+        Film(); 
+    
+        Film(const std::string title, const std::string filepath, const int chapters_count, const int* chapters_durations);
 
         ~Film() override;
 
         void show(std::ostream & s) const override;
+        
+        int getChaptersCount() const;
 
-        void play(std::string path) const override;
+        const int* getChaptersDurations() const;
+
+        int getChapterDuration(int chapter_index) const;
+
+        void setChaptersDuration(const int * chapters_durations, int count);
+
 };
 
 #endif // FILM_H
