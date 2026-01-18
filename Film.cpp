@@ -33,7 +33,7 @@ void Film::clearChapters() {
 
 void Film::show(std::ostream & s) const {
     Video::show(s);
-    s << "Chapters Count: " << this->chapters_count << std::endl;
+    s << "Chapters Count: " << this->chapters_count << std::endl; 
     s << "Chapters Durations: ";
     for (int i = 0; i < this->chapters_count; i++) {
         s << this->chapters_durations[i];

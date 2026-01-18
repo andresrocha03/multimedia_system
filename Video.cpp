@@ -25,6 +25,11 @@ void Video::show(std::ostream & s) const {
 }
 
 void Video::play(std::string path) const {
+    if (path.empty()) {
+        std::cerr << "Error: Filepath is empty. Cannot play video." << std::endl;
+        return;
+    }
+    
     std::string cmd = "mpv " + path + " &";
     system(cmd.c_str());
 }

@@ -2,6 +2,7 @@
 #include "Photo.h"
 #include "Video.h"
 #include "Film.h"
+#include "Group.h"
 #include <iostream>
 #include <sstream>
 #include <fstream>
@@ -11,46 +12,41 @@ int main(int argc, const char* argv[])
 {
     std::cout << "Hello brave new world" << std::endl;
 
-    // create an array of Media pointers
-    int count = 0;
-    Media** media_collection = new Media*[5];
+    // create a group
+    Group * g1 = new Group("g1");
+    Group * g2 = new Group("g2");
 
     //the objects can be photos, videos, films
     std::string path_photo = "/home/andre/Documentos/utensiles.jpeg";
     std::string path_video = "/home/andre/Documentos/myvideo.mp4";
     Photo * p = new Photo("My Photo", path_photo, 48.8566, 2.3522);
+    Photo * p2 = new Photo("My Photo 2", path_photo, 34.0522, -118.2437);
     Video * v = new Video("My Video", path_video, 120.0);
-    Film * f = new Film("My Film", path_video, 3, new int[3]{30, 40, 50});
+    Film * f = new Film("My Film", path_video, 3.0, 2, new int[3]{30, 40, 50});
 
     //insert elements
-    media_collection[0] = p;
-    count++;
-    media_collection[1] = v;
-    count++;
-    media_collection[2] = f;
-    count++;
-    
-    //loop that shows or plays atributs aof all elements of vector
-    for (int i = 0; i < count; i++) {
-        if (media_collection[i]->getFilepath() != "undefined") {
-            media_collection[i]->show(std::cout);
-            media_collection[i]->play(media_collection[i]->getFilepath());
-        }
-        else {
-            media_collection[i]->show(std::cout);
-        }
-    }
+    g1->push_back(p);
+    g1->push_back(v);
+    g1->push_back(f);
+    g2->push_back(p);
+    g2->push_back(p2);
 
+    //show all media in the group
+    g1->showAllMedia(std::cout);
+    g2->showAllMedia(std::cout);
 
-    //modifyng attributes of Film
-    f->setChaptersDuration(new int[2]{25, 35}, 2);
-    f->show(std::cout);
+    //modifyng attributes of photo
+    p->setTitle("Updated Photo Name");
 
-    //test empty chapters
-    f->setChaptersDuration(nullptr, 0);
-    f->show(std::cout);
-        
-    return 0;
+    //destroy g1
+    delete g1;
+
+    //show updated group
+    g2->showAllMedia(std::cout);
+
+    //destroy g2
+    delete g2;
+
 }
 
 

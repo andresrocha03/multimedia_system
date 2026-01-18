@@ -45,6 +45,10 @@ void Photo::show(std::ostream &s) const
 
 void Photo::play(std::string path) const 
 {  
+    if (path.empty()) {
+        std::cerr << "Error: Filepath is empty. Cannot display photo." << std::endl;
+        return;
+    }
     std::string cmd = "imagej " + path + " &";
     system(cmd.c_str());
 }
