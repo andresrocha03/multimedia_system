@@ -21,6 +21,7 @@ void Film::copyChapters(const int * chapters_durations, int count) {
     for (int i=0; i<count; i++){
         this->chapters_durations[i] = chapters_durations[i];
     }
+    delete[] chapters_durations;
 }
 
 void Film::clearChapters() {

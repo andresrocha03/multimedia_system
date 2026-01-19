@@ -1,12 +1,13 @@
 #ifndef GROUP_H
 #define GROUP_H
 
+#include <memory>
 #include <list>
 #include <string>
 
 class Media;
 
-class Group : public std::list<Media*> {
+class Group : public std::list<std::shared_ptr<Media>> {
     private:
         std::string name;
     public:

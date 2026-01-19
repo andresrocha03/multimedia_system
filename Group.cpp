@@ -2,6 +2,7 @@
 #include "Media.h"
 
 
+
 Group::Group(const std::string& name) : name(name) {};
 
 std::string Group::getName() const {

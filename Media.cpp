@@ -11,8 +11,9 @@ Media::Media() {
     this->filepath = "./untitled";
 }
 
-Media::~Media() = default;
-
+Media::~Media() {
+    std::cerr << "Media destructor called for " << this->title << std::endl;
+}
 std::string Media::getTitle() const {
     return this->title;
 }
