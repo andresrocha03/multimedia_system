@@ -2,10 +2,12 @@
 #define CREATOR_H
 
 #include <map>
+#include <list>
 #include <string>
 #include <memory>
-#include "Media.h"
-#include "Group.h"
+
+class Media;
+class Group;
 
 typedef std::shared_ptr<Media> MediaPtr;
 typedef std::shared_ptr<Group> GroupPtr;
@@ -14,6 +16,7 @@ class Creator  {
     private:
         std::map<std::string, MediaPtr> mediaMap;
         std::map<std::string, GroupPtr> groupMap;
+        
     public:
         Creator() = default;
         
@@ -25,13 +28,21 @@ class Creator  {
 
         void createFilm(const std::string& title, const std::string& filepath, double duration, int chaptersCount, const int* chaptersDurations);
 
-        void createGroup(const std::string& groupName);
+        void createGroup(const std::string& groupName, const std::list<MediaPtr>& mediaList);
 
+        MediaPtr getPhoto(const std::string& title) const;
+        
+        MediaPtr getVideo(const std::string& title) const;
+        
+        MediaPtr getFilm(const std::string& title) const;
+    
         void showMedia(const std::string& title) const;
 
         void showGroup(const std::string& groupName) const;
 
         void playMedia(const std::string& title) const;
+
+        void addMediaToGroup(const std::string& title, const std::string& groupName);
 };
 
 

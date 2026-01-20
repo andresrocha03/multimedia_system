@@ -14,7 +14,7 @@ PROG = proj
 #
 # Fichiers sources (NE PAS METTRE les .h ni les .o seulement les .cpp)
 #
-SOURCES = Media.cpp main.cpp Photo.cpp Video.cpp Film.cpp Group.cpp
+SOURCES = Media.cpp main.cpp Photo.cpp Video.cpp Film.cpp Group.cpp Creator.cpp
 
 #
 # Fichiers objets (ne pas modifier sauf si l'extension n'est pas .cpp)
