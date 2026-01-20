@@ -5,6 +5,8 @@
 #include <string>
 
 class Film : public Video {
+    friend class Creator;
+
     private:
         int chapters_count {};
         int* chapters_durations {};
@@ -12,11 +14,11 @@ class Film : public Video {
         void clearChapters();
         void copyChapters(const int* chapters_durations, int count);
 
-    public:
-        Film(); 
-    
-        Film(const std::string& title, const std::string& filepath, const double duration, const int chapters_count, const int* chapters_durations);
+    protected:
+        Film( const std::string& title, const std::string& filepath, const double duration, const int chapters_count, const int* chapters_durations);
 
+        Film();
+    public:
         ~Film() override;
 
         void show(std::ostream & s) const override;

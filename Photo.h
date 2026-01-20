@@ -6,16 +6,20 @@
 #include <iostream>
 
 class Photo : public Media {
+    friend class Creator;
+    
     private:
         double lat {};
         double longi {};
 
-    public:
+    protected:
         Photo( const std::string& title, const std::string& filepath, 
                 const double lat, const double longi);
         
         Photo();
-
+    
+    public:
+    
         ~Photo() override;
 
         double getLat() const;

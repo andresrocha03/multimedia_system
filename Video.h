@@ -6,15 +6,18 @@
 #include <iostream>
 
 class Video : public Media {
+    friend class Creator;
+
     private:
         double duration {};
 
-    public:
-        Video(const std::string& title, const std::string& filepath, 
-              const double duration);
-
+    protected:
+        Video( const std::string& title, const std::string& filepath, 
+               const double duration);
+        
         Video();
 
+    public:
         virtual ~Video() override;
 
         double getDuration() const;
