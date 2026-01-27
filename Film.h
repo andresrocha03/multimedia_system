@@ -18,8 +18,14 @@ class Film : public Video {
         Film( const std::string& title, const std::string& filepath, const double duration, const int chapters_count, const int* chapters_durations);
 
         Film();
+    
+        Film(const Film& other);
+
+        Film& operator=(const Film& other);
+
     public:
         ~Film() override;
+
 
         void show(std::ostream & s) const override;
         

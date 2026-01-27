@@ -15,13 +15,29 @@ Film::~Film() {
     clearChapters();
 }
 
+Film::Film(const Film& other)
+  : Video(other), chapters_count(0), chapters_durations(nullptr)
+{
+  copyChapters(other.chapters_durations, other.chapters_count);
+}
+
 void Film::copyChapters(const int * chapters_durations, int count) {
     this->chapters_durations = new int[count];
     this->chapters_count = count;
     for (int i=0; i<count; i++){
         this->chapters_durations[i] = chapters_durations[i];
     }
-    delete[] chapters_durations;
+}
+
+Film& Film::operator=(const Film& other) {
+  if (this == &other) return *this;
+
+  Video::operator=(other);      // important: copy base class too
+
+  clearChapters();
+  copyChapters(other.chapters_durations, other.chapters_count);
+
+  return *this;
 }
 
 void Film::clearChapters() {
@@ -71,9 +87,6 @@ void Film::setChaptersDuration(const int * chapters_durations, int count) {
         return;
     }
 
-    // else, copy the new chapters durations
-    this->chapters_durations = new int[count];
-    this->chapters_count = count;
     copyChapters(chapters_durations, count);
 }
 

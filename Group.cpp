@@ -12,6 +12,8 @@ std::string Group::getName() const {
     return this->name;
 }
 
+Group::
+
 void Group::showAllMedia(std::ostream& s) const {
     s << "Group: " << this->name << std::endl;
     for (const auto& media : *this) {

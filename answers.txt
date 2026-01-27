@@ -42,3 +42,6 @@ This design is similar to Java, where collections store references to objects.
 In Java, objects are not destroyed when a collection is destroyed.
 Instead, the garbage collector deletes objects only when no references remain.
 
+6) When we have objects with instance variables that are pointers, the copies can cause problems like double free.
+The solution is to follow the Rule of Three. That is to say, always make the destructor, copy constructor and copy assignment operator.
+This way we guarantee a deep copy.
