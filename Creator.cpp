@@ -25,31 +25,40 @@ void Creator::createGroup(const std::string& groupName, const std::list<MediaPtr
     groupMap[groupName] = group;
 }
 
-void Creator::showMedia(const std::string& title) const {
+bool Creator::showMedia(const std::string& title, std::ostream& out) const {
     auto it = mediaMap.find(title);
     if (it != mediaMap.end()){
-        it->second->show(std::cout);
-    } else {
-        std::cout << "Media with title '" << title << "' not found." << std::endl;
+        it->second->show(out);
+        return true;
     }
+    std::cout << "Media with title '" << title << "' not found." << std::endl;
+    return false;
+    
 }
 
-void Creator::showGroup(const std::string& groupName) const {    
+bool Creator::showGroup(const std::string& groupName, std::ostream& out) const {    
     auto groupIt = groupMap.find(groupName);
     if (groupIt != groupMap.end()) {
-        groupIt->second->showAllMedia(std::cout);
-    } else {
-        std::cout << "Group with name '" << groupName << "' not found." << std::endl;
-    }
+        groupIt->second->showAllMedia(out);
+        return true;
+    } 
+    std::cout << "Group with name '" << groupName << "' not found." << std::endl;
+    return false;
+    
 }
 
-void Creator::playMedia(const std::string& title) const {
+
+
+bool Creator::playMedia(const std::string& title) const {
     auto it = mediaMap.find(title);
     if (it != mediaMap.end()){
         it->second->play(it->second->getFilepath());
-    } else {
-        std::cout << "Media with title '" << title << "' not found." << std::endl;
-    }
+        return true;
+    } 
+    
+    std::cout << "Media with title '" << title << "' not found." << std::endl;
+    return false;
+
 }
 
 void Creator::addMediaToGroup(const std::string& title, const std::string& groupName) {
@@ -91,4 +100,14 @@ MediaPtr Creator::getFilm(const std::string& title) const {
     } else {
         return nullptr;
     }
+}
+
+void save(const std::string& filename) const {
+    for (const auto& pair: mediaMap) {
+        // Serialize each media object
+    }
+}
+
+void load(const std::string& filename) {
+
 }
