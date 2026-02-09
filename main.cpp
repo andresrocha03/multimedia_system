@@ -24,11 +24,7 @@ static std::string oneLine(std::string s) {
 }
 
 int main(int argc, const char* argv[])
-{
-    // Trying to create a group -> should not work as Group's constructor is private to Creator
-    GroupPtr g1 = std::make_shared<Group>("g1");
-    GroupPtr g2 = std::make_shared<Group>("g2");
-    
+{    
     // New creator
     Creator creator1 = Creator();
     
@@ -57,6 +53,23 @@ int main(int argc, const char* argv[])
         std::string cmd;
         ss >> cmd;
 
+        if (cmd == "SHOW") {
+            std::string what;
+            ss >> what; 
+            if (what == "GROUP") {
+                std::stringstream out;
+                creator1.showGroupMap(out);
+                response = oneLine(out.str());
+                return true;
+            }
+
+            if (what == "MEDIA") {
+                std::stringstream out;
+                creator1.showMediaMap(out);
+                response = oneLine(out.str());
+                return true;
+            }
+        }
         if (cmd == "SEARCH") {
             std::string name;
             ss >> name;
@@ -86,10 +99,51 @@ int main(int argc, const char* argv[])
             return true;
         }
 
-        if (cmd == "HELP") {
-            response = "Commands: SEARCH <name> | PLAY <name> | HELP";
+        if (cmd == "SAVE") {
+            std::string name;
+            std::string type;
+            
+            ss >> type >> name;
+            if (name.empty() || type.empty()) {
+                response = "ERROR missing name or type";
+                return true;
+            }
+
+            // std::ofstream outFile(type + "_" + name + ".txt");
+            std::stringstream outFile;
+            creator1.save(outFile, name, type);
+            std::cout << outFile.str() << std::endl; // For debugging, print the saved content
+            response = "OK SAVED " + name + " of type " + type;
             return true;
         }
+
+         if (cmd == "LOAD") {
+            std::string type;
+            std::string path;
+
+            ss >> type  >> path;
+            if (type.empty() || path.empty()) {
+                response = "ERROR missing type or path";
+                return true;
+            }
+
+            std::ifstream inFile(path);
+            creator1.load(inFile, type);
+            return true;
+        }
+
+        if (cmd == "HELP") {
+            response = "Commands:   SEARCH <name> | PLAY <name> | SAVE <name> <type> | LOAD <type> | SHOW GROUP MAP | SHOW MEDIA MAP | EXIT";
+            return true;
+        }
+
+        
+        if (cmd == "EXIT") {
+            response = "OK BYE";
+            return false; // signal to close connection
+        }
+
+
 
         response = "ERROR unknown command";
         return true;

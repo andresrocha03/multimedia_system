@@ -44,7 +44,7 @@ int main() {
     std::string request, response;
 
     std::getline(std::cin, request);
-    if (request == "quit") return 0;
+    
 
     // Envoyer la requete au serveur
     if (sockbuf.writeLine(request) < 0) {
@@ -57,12 +57,14 @@ int main() {
       std::cerr << "Client: Couldn't receive message" << std::endl;
       return 2;
     }
-
+    
     // Le serveur remplace les '\n' par des ';' car '\n' sert a indiquer la
     // fin d'un message entre le client et le serveur
     // On fait ici la transformation inverse
     std::replace(response.begin(), response.end(), ';', '\n');
 
     std::cout << "Response: " << response << std::endl;
+    
+    if (request == "EXIT") return 0;    
   }
 }

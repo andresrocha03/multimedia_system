@@ -42,6 +42,10 @@ class Creator  {
 
         bool showGroup(const std::string& groupName, std::ostream& out) const;
 
+        bool showGroupMap(std::ostream& out) const;
+
+        bool showMediaMap(std::ostream& out) const;
+
         bool playMedia(const std::string& title) const;
 
         void addMediaToGroup(const std::string& title, const std::string& groupName);

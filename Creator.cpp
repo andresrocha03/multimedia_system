@@ -47,6 +47,29 @@ bool Creator::showGroup(const std::string& groupName, std::ostream& out) const {
     
 }
 
+bool Creator::showGroupMap(std::ostream& out) const {
+    if (groupMap.empty()) {
+        std::cout << "No groups available." << std::endl;
+        return false;
+    }
+    for (const auto& groupPair : groupMap) {
+        groupPair.second->showAllMedia(out);
+        out << "------------------------" << std::endl;
+    }
+    return true;
+}
+
+bool Creator::showMediaMap(std::ostream& out) const {
+    if (mediaMap.empty()) {
+        std::cout << "No media available." << std::endl;
+        return false;
+    }
+    for (const auto& mediaPair : mediaMap) {
+        mediaPair.second->show(out);
+        out << "------------------------" << std::endl;
+    }
+    return true;
+}
 
 
 bool Creator::playMedia(const std::string& title) const {
