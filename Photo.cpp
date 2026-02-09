@@ -26,6 +26,11 @@ double Photo::getLong() const
     return this->longi;
 }
 
+std::string Photo::getClassName() const
+{
+    return "Photo";
+}
+
 void Photo::setLat(double lat)
 {
     this->lat = lat;
@@ -51,4 +56,22 @@ void Photo::play(std::string path) const
     }
     std::string cmd = "imagej " + path + " &";
     system(cmd.c_str());
+}
+
+void Photo::saveToFile(std::ostream& s) const
+{
+    Media::saveToFile(s);
+    s << this->lat << std::endl;
+    s << this->longi << std::endl;    
+}
+
+void Photo::loadFromFile(std::istream& s)
+{
+    std::string latStr;
+    std::string longStr;
+    Media::loadFromFile(s);
+    std::getline(s, latStr);
+    this->lat = std::stod(latStr);
+    std::getline(s, longStr);
+    this->longi = std::stod(longStr);
 }

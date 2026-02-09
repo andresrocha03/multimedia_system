@@ -6,6 +6,7 @@
 
 class Film : public Video {
     friend class Creator;
+    friend class Group;
 
     private:
         int chapters_count {};
@@ -35,7 +36,13 @@ class Film : public Video {
 
         int getChapterDuration(int chapter_index) const;
 
+        std::string getClassName() const override;
+
         void setChaptersDuration(const int * chapters_durations, int count);
+
+        void saveToFile(std::ostream& s) const override;
+
+        void loadFromFile(std::istream& s) override;
 
 };
 

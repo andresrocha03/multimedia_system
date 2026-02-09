@@ -76,6 +76,10 @@ int Film::getChapterDuration(int chapter_index) const {
     return this->chapters_durations[chapter_index];
 }
 
+std::string Film::getClassName() const {
+    return "Film";
+}
+
 void Film::setChaptersDuration(const int * chapters_durations, int count) {
     //first, clear existing chapters
     clearChapters();
@@ -90,3 +94,30 @@ void Film::setChaptersDuration(const int * chapters_durations, int count) {
     copyChapters(chapters_durations, count);
 }
 
+void Film::saveToFile(std::ostream& s) const
+{
+    Video::saveToFile(s);
+    s << this->chapters_count << std::endl;
+    for (int i = 0; i < this->chapters_count; i++) {
+        s << this->chapters_durations[i] << std::endl;
+    }
+} 
+
+void Film::loadFromFile(std::istream& s)
+{
+    Video::loadFromFile(s);
+    std::string chaptersCountStr;
+    std::getline(s, chaptersCountStr);
+    this->chapters_count = std::stoi(chaptersCountStr);
+
+    clearChapters(); // Clear existing chapters before loading new ones
+
+    if (this->chapters_count > 0) {
+        this->chapters_durations = new int[this->chapters_count];
+        for (int i = 0; i < this->chapters_count; i++) {
+            std::string chapterDurationStr;
+            std::getline(s, chapterDurationStr);
+            this->chapters_durations[i] = std::stoi(chapterDurationStr);
+        }
+    }
+}

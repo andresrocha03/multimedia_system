@@ -20,6 +20,8 @@ class Media {
          
         virtual std::string getFilepath() const;
 
+        virtual std::string getClassName() const = 0;
+
         virtual void setTitle(std::string newTitle);
 
         virtual void setFilepath(std::string newFilepath);
@@ -27,6 +29,10 @@ class Media {
         virtual void show(std::ostream & s) const;
 
         virtual void play(std::string path) const = 0;
+
+        virtual void saveToFile(std::ostream& s) const;
+
+        virtual void loadFromFile(std::istream& s);
     };
 
 #endif // MEDIA_H

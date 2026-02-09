@@ -7,7 +7,8 @@
 
 class Photo : public Media {
     friend class Creator;
-    
+    friend class Group;
+
     private:
         double lat {};
         double longi {};
@@ -26,6 +27,8 @@ class Photo : public Media {
 
         double getLong() const;
 
+        std::string getClassName() const override;
+
         void setLat(double lat);
 
         void setLong(double longi);
@@ -33,6 +36,10 @@ class Photo : public Media {
         void show(std::ostream & s) const override;
         
         void play(std::string path) const override;
+
+        void saveToFile(std::ostream& s) const override;
+
+        void loadFromFile(std::istream& s) override;
     };
 
 #endif // PHOTO_H

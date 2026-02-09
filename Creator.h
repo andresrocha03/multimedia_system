@@ -35,6 +35,8 @@ class Creator  {
         MediaPtr getVideo(const std::string& title) const;
         
         MediaPtr getFilm(const std::string& title) const;
+
+        GroupPtr getGroup(const std::string& groupName) const;
     
         bool showMedia(const std::string& title, std::ostream& out) const;
 
@@ -44,9 +46,9 @@ class Creator  {
 
         void addMediaToGroup(const std::string& title, const std::string& groupName);
 
-        void save(const std::string& filename) const;
+        void save(std::ostream& out, std::string& title, std::string& type) const;
 
-        void load(const std::string& filename) const;
+        void load(std::istream& in, std::string& type);
 
 
 };
