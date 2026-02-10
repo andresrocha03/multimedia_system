@@ -153,31 +153,30 @@ void Creator::save(std::ostream& out, std::string& title, std::string& type) con
     }
 }
 
-void Creator::load(std::istream& in, std::string& type) {
+void Creator::load(std::istream& in) {
     
     // Assuming each file has only one media or group, we can determine the type by reading the first line of the file
-    std::string title;
-    std::getline(in, title);
+    std::string class_name;
+    std::getline(in, class_name);
 
-
-    if (type == "Photo") {
+    if (class_name == "Photo") {
         MediaPtr media(new Photo());
         media->loadFromFile(in);
-        mediaMap[title] = media;
-    } else if (type == "Video") {
+        mediaMap[media->getTitle()] = media;
+    } else if (class_name == "Video") {
         MediaPtr media(new Video());
         media->loadFromFile(in);
-        mediaMap[title] = media;
-    } else if (type == "Film") {
+        mediaMap[media->getTitle()] = media;
+    } else if (class_name == "Film") {
         MediaPtr media(new Film());
         media->loadFromFile(in);
-        mediaMap[title] = media;
-    } else if (type == "Group") {
+        mediaMap[media->getTitle()] = media;
+    } else if (class_name == "Group") {
         GroupPtr group(new Group());
         group->loadFromFile(in);
-        groupMap[title] = group;
+        groupMap[group->getName()] = group;
     } else {
-        std::cout << "Unknown type '" << type << "'. Cannot load." << std::endl;
+        std::cout << "Unknown type '" << class_name << "'. Cannot load." << std::endl;
     }
 
 }

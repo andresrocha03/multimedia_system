@@ -67,8 +67,6 @@ void Group::loadFromFile(std::istream& s)
     //erase all current media in the group
     this->clear();
 
-    std::string class_name;
-    std::getline(s, class_name);
     std::getline(s, this->name);
     std::string mediaCountStr;
     std::getline(s, mediaCountStr);

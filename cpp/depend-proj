@@ -1,0 +1,10 @@
+Media.o: Media.cpp Media.h
+main.o: main.cpp Media.h Photo.h Video.h Film.h Group.h Creator.h \
+ tcpserver.h ccsocket.h
+Photo.o: Photo.cpp Photo.h Media.h
+Video.o: Video.cpp Video.h Media.h
+Film.o: Film.cpp Film.h Video.h Media.h
+Group.o: Group.cpp Group.h Media.h Photo.h Video.h Film.h
+Creator.o: Creator.cpp Creator.h Photo.h Media.h Video.h Film.h Group.h
+ccsocket.o: ccsocket.cpp ccsocket.h
+tcpserver.o: tcpserver.cpp tcpserver.h ccsocket.h

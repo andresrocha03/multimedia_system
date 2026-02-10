@@ -48,8 +48,6 @@ void Media::saveToFile(std::ostream& s) const
 
 void Media::loadFromFile(std::istream& s)
 {
-    std::string className;
-    std::getline(s, className); // Read and ignore the class name, as it's not needed for loading
     std::getline(s, this->title);
     std::getline(s, this->filepath);
 }

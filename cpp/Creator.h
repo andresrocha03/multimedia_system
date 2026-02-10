@@ -52,7 +52,7 @@ class Creator  {
 
         void save(std::ostream& out, std::string& title, std::string& type) const;
 
-        void load(std::istream& in, std::string& type);
+        void load(std::istream& in);
 
 
 };

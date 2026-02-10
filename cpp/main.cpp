@@ -25,24 +25,23 @@ static std::string oneLine(std::string s) {
 
 int main(int argc, const char* argv[])
 {    
-    // New creator
-    Creator creator1 = Creator();
+    // // New creator
+    Creator creator = Creator();
     
-    // Testing creator
-    std::string path_photo = "/home/andre/Documentos/utensiles.jpeg";
-    std::string path_video = "/home/andre/Documentos/myvideo.mp4";
+    // // Testing creator
+    std::string path = "path/to/media.jpg";
     
-    creator1.createPhoto("P1", path_photo, 48.8566, 2.3522);
-    creator1.createPhoto("P2", path_photo, 34.0522, -118.2437);
-    creator1.createVideo("V1", path_video, 150.0);
-    creator1.createFilm("F1", path_video, 300.0, 3, new int[3]{60, 90, 150});
+    creator.createPhoto("Photo1", path, 48.8566, 2.3522);
+    creator.createPhoto("Photo2", path, 34.0522, -118.2437);
+    creator.createVideo("Video1", path, 150.0);
+    creator.createFilm("Film1", path, 300.0, 3, new int[3]{60, 90, 150});
     
     // Create groups
-    std::list<MediaPtr> group1Media = {creator1.getPhoto("P1"), creator1.getPhoto("P2")};
-    creator1.createGroup("Group1", group1Media);
+    std::list<MediaPtr> group1Media = {creator.getPhoto("Photo1"), creator.getPhoto("Photo2")};
+    creator.createGroup("Group1", group1Media);
     
-    std::list<MediaPtr> group2Media = {creator1.getVideo("V1"), creator1.getFilm("F1")};
-    creator1.createGroup("Group2", group2Media);
+    std::list<MediaPtr> group2Media = {creator.getVideo("Video1"), creator.getFilm("Film1")};
+    creator.createGroup("Group2", group2Media);
     
     
     // Create the TCPServer
@@ -58,14 +57,14 @@ int main(int argc, const char* argv[])
             ss >> what; 
             if (what == "GROUP") {
                 std::stringstream out;
-                creator1.showGroupMap(out);
+                creator.showGroupMap(out);
                 response = oneLine(out.str());
                 return true;
             }
 
             if (what == "MEDIA") {
                 std::stringstream out;
-                creator1.showMediaMap(out);
+                creator.showMediaMap(out);
                 response = oneLine(out.str());
                 return true;
             }
@@ -79,8 +78,8 @@ int main(int argc, const char* argv[])
             }
 
             std::stringstream out;
-            bool ok = creator1.showGroup(name, out);
-            bool okMedia = creator1.showMedia(name, out);
+            bool ok = creator.showGroup(name, out);
+            bool okMedia = creator.showMedia(name, out);
             ok = ok || okMedia;  
             response = ok ? oneLine(out.str()) : "NOT_FOUND " + name;
             return true;
@@ -94,7 +93,7 @@ int main(int argc, const char* argv[])
                 return true;
             }
 
-            bool ok = creator1.playMedia(name);
+            bool ok = creator.playMedia(name);
             response = ok ? ("OK PLAY " + name) : ("NOT_FOUND " + name);
             return true;
         }
@@ -103,37 +102,35 @@ int main(int argc, const char* argv[])
             std::string name;
             std::string type;
             
-            ss >> type >> name;
+            ss >> name >> type;
             if (name.empty() || type.empty()) {
                 response = "ERROR missing name or type";
                 return true;
             }
 
-            // std::ofstream outFile(type + "_" + name + ".txt");
-            std::stringstream outFile;
-            creator1.save(outFile, name, type);
-            std::cout << outFile.str() << std::endl; // For debugging, print the saved content
+            std::ofstream outFile(type + "_" + name + ".txt");
+            creator.save(outFile, name, type);
             response = "OK SAVED " + name + " of type " + type;
             return true;
         }
 
          if (cmd == "LOAD") {
-            std::string type;
             std::string path;
 
-            ss >> type  >> path;
-            if (type.empty() || path.empty()) {
-                response = "ERROR missing type or path";
+            ss >> path;
+            if (path.empty()) {
+                response = "ERROR missing path";
                 return true;
             }
 
             std::ifstream inFile(path);
-            creator1.load(inFile, type);
+            creator.load(inFile);
+            response = "OK LOADED ";
             return true;
         }
 
         if (cmd == "HELP") {
-            response = "Commands:   SEARCH <name> | PLAY <name> | SAVE <name> <type> | LOAD <type> | SHOW GROUP MAP | SHOW MEDIA MAP | EXIT";
+            response = "Commands:   SEARCH <name> | PLAY <name> | SAVE <name> <type> | LOAD <path> | SHOW GROUP MAP | SHOW MEDIA MAP | EXIT";
             return true;
         }
 
@@ -152,6 +149,7 @@ int main(int argc, const char* argv[])
     // Run server loop
     std::cout << "Starting Server on port " << PORT << std::endl;
     int status = server->run(PORT);
+    delete server; // Clean up server resources
     if (status < 0) {
         std::cerr << "Could not start Server on port " << PORT << std::endl;
         return 1;
