@@ -5,22 +5,27 @@ into the swing folder and tap “make run” in the terminal.
 
 -​ What do we call a method that is not implemented in the base class, but
 only in the subclasses?
+
 The method is a pure virtual function and the class is called abstract class.
 
 - It is not possible anymore to instantiate base class objects. Why is that
 ?
+
 Because base class is an abstract class.
 
 - What is the characteristic property of POO that allows it to create a
 vector with photos and videos and treat all of them in the same way ?
+
 Polymorphism. This allows us to manipulate objects through the base class
 interface, but the correct method implementation is called at runtime depending on
 the real object type.
 
 - What is needed specifically in C++?
+
 In cpp we explicitly need to change objects to virtual, in Java it is virtual by default.
 
 - What are the types of elements in the vector? Compared to Java.
+
 It must be pointers because there would be object slicing and polymorphism would
 be lost.
 In java, objects are always manipulated through references and methods
@@ -30,6 +35,7 @@ are virtual by default.
 peut appartenir à plusieurs groupes (on verra ce point à la question
 suivante). On rappelle aussi que la liste d'objets doit en fait être une liste
 de pointeurs d'objets. Pourquoi ? Comparé à Java.
+
 A group must not destroy the objects it contains because the same object can
 belong to several groups.
 If a group deleted its objects, other groups would keep dangling pointers, leading to
