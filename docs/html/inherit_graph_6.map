@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classMedia.html" title="Forward declaration of the Media base class." alt="" coords="5,31,68,57"/>
+<area shape="rect" id="node2" href="$classPhoto.html" title="Represents a photo media with GPS coordinates." alt="" coords="116,5,175,32"/>
+<area shape="rect" id="node3" href="$classVideo.html" title="Represents a video media with a duration." alt="" coords="116,56,175,83"/>
+</map>

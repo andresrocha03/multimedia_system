@@ -9,7 +9,7 @@
 #
 # Nom du programme
 #
-PROG = proj
+PROG = tp_cpp
 
 #
 # Fichiers sources (NE PAS METTRE les .h ni les .o seulement les .cpp)

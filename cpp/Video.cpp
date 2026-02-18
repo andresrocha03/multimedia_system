@@ -28,14 +28,15 @@ void Video::show(std::ostream & s) const {
     s << "Duration: " << this->duration << " seconds" << std::endl;
 }
 
-void Video::play(std::string path) const {
+bool Video::play(std::string path) const {
     if (path.empty()) {
         std::cerr << "Error: Filepath is empty. Cannot play video." << std::endl;
-        return;
+        return false;
     }
     
     std::string cmd = "mpv " + path + " &";
     system(cmd.c_str());
+    return true;
 }
 
 void Video::saveToFile(std::ostream& s) const

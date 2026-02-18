@@ -1,0 +1,35 @@
+# -------------------------------------------------
+# PROJECT
+# -------------------------------------------------
+PROJECT_NAME           = "TP Swing + C++ Server"
+OUTPUT_DIRECTORY       = docs
+
+# -------------------------------------------------
+# INPUT (root of your project)
+# -------------------------------------------------
+INPUT                  = .
+RECURSIVE              = YES
+
+# Read both Java and C++
+FILE_PATTERNS          = *.java *.cpp *.h *.hpp
+
+# -------------------------------------------------
+# LANGUAGE OPTIMIZATION
+# -------------------------------------------------
+OPTIMIZE_OUTPUT_JAVA   = YES
+OPTIMIZE_OUTPUT_FOR_C  = NO
+
+# -------------------------------------------------
+# EXTRACT EVERYTHING
+# -------------------------------------------------
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_PACKAGE        = YES
+EXTRACT_STATIC         = YES
+
+# -------------------------------------------------
+# OUTPUT FORMAT
+# -------------------------------------------------
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+GENERATE_TREEVIEW      = YES

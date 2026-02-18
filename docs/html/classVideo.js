@@ -1,0 +1,26 @@
+var classVideo =
+[
+    [ "Video", "classVideo.html#ae8a42a4d868efb4f6664a57a686fa9f5", null ],
+    [ "Video", "classVideo.html#ab67336c2c5b6227a9635bc7dcd6af543", null ],
+    [ "~Video", "classVideo.html#a3dab275f0fa395bdeaaeb42b83d689c1", null ],
+    [ "Video", "classVideo.html#ae8a42a4d868efb4f6664a57a686fa9f5", null ],
+    [ "Video", "classVideo.html#ab67336c2c5b6227a9635bc7dcd6af543", null ],
+    [ "~Video", "classVideo.html#a00dfa83ed4faa6e014afdae06c8a8362", null ],
+    [ "getClassName", "classVideo.html#a1dcd090b6854b30bf9f2f233dc0faff7", null ],
+    [ "getClassName", "classVideo.html#a1dcd090b6854b30bf9f2f233dc0faff7", null ],
+    [ "getDuration", "classVideo.html#a019bd76e4fa11c1974b46af411207b90", null ],
+    [ "getDuration", "classVideo.html#a019bd76e4fa11c1974b46af411207b90", null ],
+    [ "loadFromFile", "classVideo.html#aa0c6b14f75df8b065649b1ecd0443138", null ],
+    [ "loadFromFile", "classVideo.html#a6d8edbd957dae833303f110637f27e12", null ],
+    [ "play", "classVideo.html#ae6de5c9aa2b6def159c26e46efc03e28", null ],
+    [ "play", "classVideo.html#ad365d441c417e1539dac937a2ad2942d", null ],
+    [ "saveToFile", "classVideo.html#a255c4501770ce295787a80b730c5da06", null ],
+    [ "saveToFile", "classVideo.html#a4c1c890fb1591a8c570ac026e7a15735", null ],
+    [ "setDuration", "classVideo.html#aed5c68b0924c99d96bb858b42b309249", null ],
+    [ "setDuration", "classVideo.html#aed5c68b0924c99d96bb858b42b309249", null ],
+    [ "show", "classVideo.html#af9f3428ff579548b0e5bf1f077fa66f8", null ],
+    [ "show", "classVideo.html#ad9513d6fadc45dc2162be2ad57b93d21", null ],
+    [ "Creator", "classVideo.html#a0d0b45b72cf05ce51fa75f98ad0e4822", null ],
+    [ "Group", "classVideo.html#ace1050b29fb6a0619ecf018e6cb26bce", null ],
+    [ "duration", "classVideo.html#a68f75efe0a8869176f0fbd8d54bc4916", null ]
+];

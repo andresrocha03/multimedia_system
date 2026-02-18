@@ -54,7 +54,7 @@ bool Creator::showGroupMap(std::ostream& out) const {
     }
     for (const auto& groupPair : groupMap) {
         groupPair.second->showAllMedia(out);
-        out << "------------------------" << std::endl;
+        out << " | " << std::endl;
     }
     return true;
 }
@@ -66,7 +66,7 @@ bool Creator::showMediaMap(std::ostream& out) const {
     }
     for (const auto& mediaPair : mediaMap) {
         mediaPair.second->show(out);
-        out << "------------------------" << std::endl;
+        out << " | " << std::endl;
     }
     return true;
 }

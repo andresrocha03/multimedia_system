@@ -34,7 +34,9 @@ int main(int argc, const char* argv[])
     creator.createPhoto("Photo1", path, 48.8566, 2.3522);
     creator.createPhoto("Photo2", path, 34.0522, -118.2437);
     creator.createVideo("Video1", path, 150.0);
-    creator.createFilm("Film1", path, 300.0, 3, new int[3]{60, 90, 150});
+    int* chapters = new int[3]{60, 90, 150};
+    creator.createFilm("Film1", path, 300.0, 3, chapters);
+    delete[] chapters;
     
     // Create groups
     std::list<MediaPtr> group1Media = {creator.getPhoto("Photo1"), creator.getPhoto("Photo2")};
@@ -130,7 +132,7 @@ int main(int argc, const char* argv[])
         }
 
         if (cmd == "HELP") {
-            response = "Commands:   SEARCH <name> | PLAY <name> | SAVE <name> <type> | LOAD <path> | SHOW GROUP MAP | SHOW MEDIA MAP | EXIT";
+            response = "Commands:   SEARCH <title> | PLAY <title> | SAVE <title> <type> | LOAD <path> | SHOW GROUP MAP | SHOW MEDIA MAP | EXIT";
             return true;
         }
 
@@ -149,7 +151,10 @@ int main(int argc, const char* argv[])
     // Run server loop
     std::cout << "Starting Server on port " << PORT << std::endl;
     int status = server->run(PORT);
-    delete server; // Clean up server resources
+    
+    // Clean up
+    delete server; 
+
     if (status < 0) {
         std::cerr << "Could not start Server on port " << PORT << std::endl;
         return 1;

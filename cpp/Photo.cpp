@@ -48,14 +48,15 @@ void Photo::show(std::ostream &s) const
     s << "Longitude: " << this->longi << std::endl;
 }
 
-void Photo::play(std::string path) const 
+bool Photo::play(std::string path) const 
 {  
     if (path.empty()) {
         std::cerr << "Error: Filepath is empty. Cannot display photo." << std::endl;
-        return;
+        return false;
     }
     std::string cmd = "imagej " + path + " &";
     system(cmd.c_str());
+    return true;
 }
 
 void Photo::saveToFile(std::ostream& s) const

@@ -41,8 +41,8 @@ public class MainWindow extends JFrame {
     private final JTextField hostField = new JTextField("localhost", 12);
     private final JTextField portField = new JTextField("3331", 6);
 
-    private final JTextField nameField = new JTextField(16);
-    private final JTextField typeField = new JTextField("Group", 10);
+    private final JTextField titleField = new JTextField(16);
+    private final JTextField typeField = new JTextField(10);
     private final JTextField pathField = new JTextField(26);
 
     private final TcpClient client = new TcpClient();
@@ -173,10 +173,10 @@ public class MainWindow extends JFrame {
 
         c.gridx = 0;
         c.gridy = 1;
-        p.add(new JLabel("Name"), c);
+        p.add(new JLabel("Title"), c);
 
         c.gridx = 1;
-        p.add(nameField, c);
+        p.add(titleField, c);
 
         c.gridx = 2;
         p.add(new JLabel("Type"), c);
@@ -276,12 +276,12 @@ public class MainWindow extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            String name = nameField.getText().trim();
-            if (name.isEmpty()) {
-                addOut("<< Please type a name first");
+            String title = titleField.getText().trim();
+            if (title.isEmpty()) {
+                addOut("<< Please fill in a title first");
                 return;
             }
-            sendCommandAsync("SEARCH " + name);
+            sendCommandAsync("SEARCH " + title);
         }
     }
 
@@ -298,12 +298,12 @@ public class MainWindow extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            String name = nameField.getText().trim();
-            if (name.isEmpty()) {
-                addOut("<< Please type a name first");
+            String title = titleField.getText().trim();
+            if (title.isEmpty()) {
+                addOut("<< Please type a title first");
                 return;
             }
-            sendCommandAsync("PLAY " + name);
+            sendCommandAsync("PLAY " + title);
         }
     }
 
@@ -321,14 +321,14 @@ public class MainWindow extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            String name = nameField.getText().trim();
+            String title = titleField.getText().trim();
             String type = typeField.getText().trim();
 
-            if (name.isEmpty() || type.isEmpty()) {
-                addOut("<< Please fill name and type");
+            if (title.isEmpty() || type.isEmpty()) {
+                addOut("<< Please fill title and type");
                 return;
             }
-            sendCommandAsync("SAVE " + name + " " + type);
+            sendCommandAsync("SAVE " + title + " " + type);
         }
     }
 

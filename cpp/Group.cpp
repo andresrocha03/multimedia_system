@@ -24,7 +24,7 @@ void Group::showAllMedia(std::ostream& s) const {
     s << "Group: " << this->name << std::endl;
     for (const auto& media : *this) {
         media->show(s);
-        s << " ------------------------ " << std::endl;
+        s << " | " << std::endl;
     }
 
 }

@@ -1,0 +1,11 @@
+var searchData=
+[
+  ['read_122',['read',['../classSocketBuffer.html#ae8a72a818dfb3a0986dc72a2e0ca5a87',1,'SocketBuffer']]],
+  ['readline_123',['readLine',['../classSocketBuffer.html#afa3a2f239eb56c2e4fd4fa465f7fb54d',1,'SocketBuffer']]],
+  ['readseparator_124',['readSeparator',['../classSocketBuffer.html#a81a0088b93fc30ebcdde8dc6841fc03d',1,'SocketBuffer']]],
+  ['receive_125',['receive',['../classSocket.html#a01b463d51433a10658854446bde71c40',1,'Socket']]],
+  ['receivefrom_126',['receiveFrom',['../classSocket.html#aa19f1c03af97458c042880c6be638151',1,'Socket']]],
+  ['remaining_127',['remaining',['../structInputBuffer.html#ad94b06e792363709c990e9aa78c500ec',1,'InputBuffer']]],
+  ['retrieveline_128',['retrieveLine',['../classSocketBuffer.html#afed3bfc9187c207578f8ffe37c811a83',1,'SocketBuffer']]],
+  ['run_129',['run',['../classTCPServer.html#a1409041961e91f1dbc4933483b4c3b23',1,'TCPServer']]]
+];
